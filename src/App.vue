@@ -1,30 +1,63 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <nav-bar></nav-bar>
+  <router-view />
 </template>
 
+<script>
+import NavBar from './components/NavBar.vue';
+
+export default {
+  components: { NavBar },
+};
+</script>
+
 <style>
+body {
+  overflow: hidden;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  overflow: hidden;
 }
-
-#nav {
-  padding: 30px;
+.andara {
+  font-family: 'Andada Pro', serif !important;
 }
-
-#nav a {
+.roboto {
+  font-family: 'Roboto', sans-serif !important;
+}
+.bold {
   font-weight: bold;
-  color: #2c3e50;
+}
+.bolder {
+  font-weight: bolder;
+}
+.light {
+  font-weight: 300;
+}
+.sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+.list-group-item{
+  cursor: pointer;
+}
+.title-1 {
+  font-size: 12px;
+}
+.title-2 {
+  font-size: 14px;
+}
+.title-3 {
+  font-size: 17px;
+}
+.title-4 {
+  font-size: 21px;
+}
+.title-5 {
+  font-size: 25px;
+}
+.title-6 {
+  font-size: 30px;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
