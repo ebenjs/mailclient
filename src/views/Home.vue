@@ -1,5 +1,7 @@
 <template>
   <div class="container" id="content">
+    <va-modal v-model="showModal" :message="message" title="Overview" />
+
     <div class="row no-gutters">
       <div class="col-lg-3">
         <side-nav>
@@ -50,7 +52,8 @@
           v-for="(inmail, index) in inmails"
           :key="index"
           :pdata="inmail"
-          @inmail-preview-click="setCurrentImail"
+          :class="active(index)"
+          @inmail-preview-click="setCurrentImail(inmail, index)"
         ></mail-preview>
       </div>
       <div class="col-lg-5 card-border">
@@ -71,20 +74,31 @@
       </div>
     </div>
   </div>
+  <button class="newMailButton" @click="showModal = !showModal">
+    <span class="fas fa-plus"></span>
+  </button>
 </template>
+
 <script>
+import axios from 'axios';
 import MailPreview from '../components/MailPreview.vue';
 import MailView from '../components/MailView.vue';
 import SideNav from '../components/SideNav.vue';
 
-const axios = require('axios');
-
 export default {
-  components: { SideNav, MailPreview, MailView },
+  components: {
+    SideNav,
+    MailPreview,
+    MailView,
+  },
   methods: {
-    setCurrentImail(el) {
+    setCurrentImail(el, index) {
       this.currentSelectedInMail = el;
       this.$refs.mailViewComponent.update(true);
+      this.selectedIndex = index;
+    },
+    active(index) {
+      return this.selectedIndex === index ? 'mailActive' : '';
     },
     updateView(el) {
       console.log('Called2', el);
@@ -105,8 +119,10 @@ export default {
   },
   data() {
     return {
+      showModal: false,
       inmails: null,
       currentSelectedInMail: null,
+      selectedIndex: null,
     };
   },
   mounted() {
@@ -141,5 +157,20 @@ export default {
 }
 .card-border {
   border: 1px solid #eeeeee;
+}
+.newMailButton {
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: blueviolet;
+  color: #fff;
+  position: absolute;
+  right: 10%;
+  bottom: 50px;
+}
+.mailActive {
+  background-color: blueviolet;
+  color: #fff;
 }
 </style>

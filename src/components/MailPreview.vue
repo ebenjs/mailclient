@@ -1,7 +1,7 @@
 <template>
   <div class="list-group">
     <div
-      @click="this.$emit('inmailPreviewClick', inmail)"
+      @click="mailClick"
       class="list-group-item list-group-item-action flex-column align-items-start"
     >
       <div class="d-flex w-100 justify-content-between">
@@ -25,6 +25,10 @@ export default {
     };
   },
   methods: {
+    active() {},
+    mailClick() {
+      this.$emit('inmailPreviewClick', this.inmail);
+    },
     truncate(text, length, suffix) {
       if (text.length > length) {
         return text.substring(0, length) + suffix;
@@ -35,3 +39,10 @@ export default {
   props: ['pdata'],
 };
 </script>
+
+<style scoped>
+.list-group-item {
+  background-color: inherit;
+  color: inherit;
+}
+</style>
