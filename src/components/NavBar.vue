@@ -1,7 +1,12 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky">
     <div class="container">
-      <a class="navbar-brand" href="#">Mail client</a>
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" />
+        <span class="ml-3">
+        EbenMail
+        </span>
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -53,3 +58,10 @@ export default {
   name: 'NavBar',
 };
 </script>
+
+<style scoped>
+.navbar-brand img{
+  height: 30px;
+  transform: scale(2);
+}
+</style>
